@@ -2,41 +2,49 @@
 if [ "$1" == "1" ]; then debug=1; fi
 
 while [ -z $totalenergy ]; do
-	totalenergy=`python /home/ton/dts353/get_register 256 2> /dev/null`
+	totalenergy=`python /home/ton/dts353/get_register.py 256 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 
 while [ -z $l1_energy ]; do
-        l1_energy=`python /home/ton/dts353/get_register 258 2> /dev/null`
+        l1_energy=`python /home/ton/dts353/get_register.py 258 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 while [ -z $l2_energy ]; do
-        l2_energy=`python /home/ton/dts353/get_register 260 2> /dev/null`
+        l2_energy=`python /home/ton/dts353/get_register.py 260 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 while [ -z $l3_energy ]; do
-        l3_energy=`python /home/ton/dts353/get_register 256 2> /dev/null`
+        l3_energy=`python /home/ton/dts353/get_register.py 256 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 while [ -z $total_power ]; do
-        total_power=`python /home/ton/dts353/get_register 28 2> /dev/null`
+        total_power=`python /home/ton/dts353/get_register.py 28 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 while [ -z $l1_power ]; do
-        l1_power=`python /home/ton/dts353/get_register 30 2> /dev/null`
+        l1_power=`python /home/ton/dts353/get_register.py 30 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 while [ -z $l2_power ]; do
-        l2_power=`python /home/ton/dts353/get_register 32 2> /dev/null`
+        l2_power=`python /home/ton/dts353/get_register.py 32 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 while [ -z $l3_power ]; do
-        l3_power=`python /home/ton/dts353/get_register 34 2> /dev/null`
+        l3_power=`python /home/ton/dts353/get_register.py 34 2> /dev/null`
 	count=$(($count+1))
+	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 if [ "$debug" == "1" ]; then

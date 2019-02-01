@@ -4,10 +4,6 @@
 import sys
 import minimalmodbus
 
-# Check if register is given
-#if sys.argv[1] <=0 :
-#	sys.exit("Please pass register to be queried to the script as decimal")
-
 
 # Set minimalmodbus to the serial parameters for your device
 minimalmodbus.BAUDRATE=9600

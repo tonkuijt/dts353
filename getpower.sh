@@ -58,7 +58,7 @@ if [ "$debug" == "1" ]; then
 	echo "L3 power $l3_power kW"
 	echo "Number of retries: $count"
 else
-	curl --silent -i -XPOST 'http://vps.tonkuijt.nl:8086/write?db=emobility' --data-binary "energy,phase=all value=$totalenergy
+	curl --silent -i -XPOST '<InfluxServer>:8086/write?db=emobility' --data-binary "energy,phase=all value=$totalenergy
 energy,phase=l1 value=$l1_energy
 energy,phase=l2 value=$l2_energy
 energy,phase=l3 value=$l3_energy

@@ -1,48 +1,55 @@
 #!/bin/bash
+
+# InfluxDB server goes here
+INFLUXSERVER=[InfluxDB Server URL]
+
+# Script location goes here
+SCRIPTLOCATION=${PWD}
+
 if [ "$1" == "1" ]; then debug=1; fi
 
 while [ -z $totalenergy ]; do
-	totalenergy=`python /home/ton/dts353/get_register.py 256 2> /dev/null`
+	totalenergy=`python $SCRIPTLOCATION/get_register.py 256 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 
 while [ -z $l1_energy ]; do
-        l1_energy=`python /home/ton/dts353/get_register.py 258 2> /dev/null`
+        l1_energy=`python $SCRIPTLOCATION/get_register.py 258 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 while [ -z $l2_energy ]; do
-        l2_energy=`python /home/ton/dts353/get_register.py 260 2> /dev/null`
+        l2_energy=`python $SCRIPTLOCATION/get_register.py 260 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 while [ -z $l3_energy ]; do
-        l3_energy=`python /home/ton/dts353/get_register.py 256 2> /dev/null`
+        l3_energy=`python $SCRIPTLOCATION/get_register.py 256 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
 
 while [ -z $total_power ]; do
-        total_power=`python /home/ton/dts353/get_register.py 28 2> /dev/null`
+        total_power=`python $SCRIPTLOCATION/get_register.py 28 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
 while [ -z $l1_power ]; do
-        l1_power=`python /home/ton/dts353/get_register.py 30 2> /dev/null`
+        l1_power=`python $SCRIPTLOCATION/get_register.py 30 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
 while [ -z $l2_power ]; do
-        l2_power=`python /home/ton/dts353/get_register.py 32 2> /dev/null`
+        l2_power=`python $SCRIPTLOCATION/get_register.py 32 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
 while [ -z $l3_power ]; do
-        l3_power=`python /home/ton/dts353/get_register.py 34 2> /dev/null`
+        l3_power=`python $SCRIPTLOCATION/get_register.py 34 2> /dev/null`
 	count=$(($count+1))
 	if [ "$debug" == "1" ]; then echo $count; fi
 done
@@ -58,7 +65,7 @@ if [ "$debug" == "1" ]; then
 	echo "L3 power $l3_power kW"
 	echo "Number of retries: $count"
 else
-	curl --silent -i -XPOST '<InfluxServer>:8086/write?db=emobility' --data-binary "energy,phase=all value=$totalenergy
+	curl --silent -i -XPOST '$INFLUXSERVER:8086/write?db=emobility' --data-binary "energy,phase=all value=$totalenergy
 energy,phase=l1 value=$l1_energy
 energy,phase=l2 value=$l2_energy
 energy,phase=l3 value=$l3_energy
